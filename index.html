@@ -1,1 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bucin Berfoto</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
+    body {
+      font-family: 'Comic Sans MS', cursive;
+      background: url('https://files.catbox.moe/c35wev.jpg') no-repeat center center fixed;;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #ff85a2;
+      text-shadow: 1px 1px 2px #fff;
+    }
+
+    .gallery {
+      position: relative;
+      width: 300px;
+      height: 400px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      opacity: 0;
+      transition: opacity 0.7s ease-in-out;
+    }
+
+    .gallery img.active {
+      opacity: 1;
+    }
+
+    .controls {
+      margin-top: 20px;
+      display: flex;
+      gap: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #ff85a2;
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #ff4d6d;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>💘 GALERI FOTO NANA 💘</h1>
+
+  <div class="gallery" id="gallery">
+    <img src="https://files.catbox.moe/ttfgu0.jpg" class="active" />
+    <img src="https://iili.io/F6AS2fe.jpg" class="active" />
+    <img src="https://iili.io/F6AS30u.jpg" />
+    <img src="https://iili.io/F6ArOIR.jpg" />
+    <img src="https://iili.io/F6AreXp.jpg" />
+    <img src="https://iili.io/F6ASJs9.jpg" />
+    <img src="https://files.catbox.moe/wogvde.jpg" />
+    <img src="https://files.catbox.moe/1nv7cs.jpg" />
+    <img src="https://files.catbox.moe/9q5scg.jpg" />
+  </div>
+
+  <div class="controls">
+    <button onclick="prevFoto()">Prev</button>
+    <button onclick="nextFoto()">Next</button>
+    
+<audio id="bgmusic" autoplay loop playsinline>
+    <source src="https://files.catbox.moe/9uy9wn.m4a" type="audio/mpeg" />
+  </audio>
+  <audio id="clickSound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_6dbb3d216c.mp3" preload="auto"></audio>
+  
+  <script>
+    const images = document.querySelectorAll('.gallery img');
+    let current = 0;
+
+    function showFoto(index) {
+      images.forEach((img, i) => {
+        img.classList.toggle('active', i === index);
+      });
+    }
+
+    function nextFoto() {
+      current = (current + 1) % images.length;
+      showFoto(current);
+    }
+
+    function prevFoto() {
+      current = (current - 1 + images.length) % images.length;
+      showFoto(current);
+    }
+  </script>
+
+</body>
+</html>
